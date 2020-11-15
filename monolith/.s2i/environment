@@ -1,0 +1,1 @@
+#JAVA_OPTS_APPEND=-Xms4096m -Xmx4096m -XX:MetaspaceSize=2048m

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="6"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+             http://java.sun.com/xml/ns/javaee/application_6.xsd">
+	<display-name>dukesbank</display-name>
+	<module>
+		<web>
+			<web-uri>dukesbank-war-0.0.1-SNAPSHOT.war</web-uri>
+			<context-root>/bank</context-root>
+		</web>
+	</module>
+	<module>
+		<ejb>dukesbank-ejb-0.0.1-SNAPSHOT.jar</ejb>
+	</module>
+	<!-- <module>
+		<java>dukesbank-appclient-0.0.1-SNAPSHOT.jar</java>
+	</module> -->
+	<security-role>
+		<role-name>bankAdmin</role-name>
+	</security-role>
+	<security-role>
+		<role-name>bankCustomer</role-name>
+	</security-role>
+</application>

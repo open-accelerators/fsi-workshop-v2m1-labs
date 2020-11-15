@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-ejb-jar xmlns="http://www.bea.com/ns/weblogic/910" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.bea.com/ns/weblogic/910 http://www.bea.com/ns/weblogic/910/weblogic-ejb-jar.xsd">
+
+</weblogic-ejb-jar>
