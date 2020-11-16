@@ -12,26 +12,6 @@
 	<name>dukesbank-ear</name>
 	<description>dukesbank-ear</description>
 	<dependencies>
-		<!-- <dependency>
-			<groupId>com.sun.tutorial.javaee</groupId>
-			<artifactId>dukesbank-appclient</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>compile</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.spf4j</groupId>
-					<artifactId>spf4j-ui</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.spf4j</groupId>
-					<artifactId>spf4j-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>javax.annotation</groupId>
-					<artifactId>javax.annotation-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency> -->
 		<dependency>
 			<groupId>com.sun.tutorial.javaee</groupId>
 			<artifactId>dukesbank-ejb</artifactId>
