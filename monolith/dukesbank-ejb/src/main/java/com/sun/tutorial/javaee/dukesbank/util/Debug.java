@@ -5,12 +5,9 @@
  * compliance with  the terms of the License at:
  * http://developer.sun.com/berkeley_license.html
  */
-
-
 package com.sun.tutorial.javaee.dukesbank.util;
 
 import weblogic.i18n.logging.NonCatalogLogger;
-
 
 /**
  * This class makes it easier to print out debug statements.
