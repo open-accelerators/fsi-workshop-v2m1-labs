@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Banking Transactions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/patternfly/3.24.0/css/patternfly-additions.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.6.1/jquery.timeago.min.js"></script>
+    <!-- Load AngularJS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript">
+
+      var lastFetch;
+      var app = angular.module("TransactionManagement", []);
+
+      //Controller Part
+      app.controller("TransactionManagementController", function ($scope, $http) {
+
+        $(document).ready(function () {
+          jQuery("time.timeago").timeago();
+
+          _fetchTransactions();
+
+          setInterval(function() {
+              _fetchTransactions();
+          }, 2000);
+        })
+
+        //Initialize page with default data which is blank in this example
+        $scope.transactions = [];
+        $scope.statusText = "unknown";
+        $scope.statusStyle = "";
+        $scope.fetchAge = "never";
+
+        //Now load the data from server
+        _fetchTransactions();
+
+        /* Private Methods */
+        function _fetchTransactions() {
+          $http({
+            method: 'GET',
+            url: '/services/transactions'
+          }).then(function successCallback(response) {
+            $scope.transactions = response.data;
+            $scope.statusText = "OK";
+            $scope.fetchAge = "moments ago";
+            $scope.statusStyle = "color: green";
+            lastFetch = new Date().getTime();
+          }, function errorCallback(response) {
+            $scope.statusText = "DEAD";
+            $scope.fetchAge = Math.floor(((new Date().getTime() - lastFetch) / 1000)) + "seconds ago";
+            $scope.statusStyle = "color: red";                    
+            console.log(response.statusText);
+          });
+        }
+
+        function _success(response) {
+          _fetchTransactions();
+        }
+
+        function _error(response) {
+          alert(response.data.message || response.statusText);
+        }
+       
+      });
+    </script>
+</head>
+<body ng-app="TransactionManagement" ng-controller="TransactionManagementController">
+
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">Banking Transaction Management</h1>
+        <p>This shows the Transactions of Banking Accounts from the Transaction microservice using <a href="https://quarkus.io">Quarkus</a>.
+        </p>
+    </div>
+</div>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-12">
+            <br><br>
+            <button class="btn btn-danger btn-lg" onclick="_fetchTransactions()">Fetch Transactions</button>
+            <hr>
+            <center>
+                <h1>The Transactions of Banking Accounts</h1>
+                <h2>Status: <code style='{{statusStyle}}'>{{statusText}}</code> (Last Successful Fetch: <span>{{fetchAge}}</span>)</h2>
+                
+            </center>
+            <table class="table table-bordered" id="transactions" border='1'>
+                <tr>
+                    <th>Account ID</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Balance</th>
+                    <th>Description</th>
+                </tr>
+                <tr ng-repeat="tx in transactions">
+                    <td><strong>{{ tx.accountId }}</strong></td>
+                    <td>{{ tx.timeStamp }}</td>
+                    <td>{{ tx.amount }}</td>
+                    <td>{{ tx.balance }}</td>
+                    <td>{{ tx.description }}</td>
+                </tr>
+            </table>
+            <hr>
+            <button class="btn btn-danger btn-lg" onclick="_fetchTransactions()">Fetch Transactions</button>
+
+        </div>
+    </div>
+    <hr>
+    <footer>
+        <p>&copy; Red Hat 2020</p>
+    </footer>
+</div>
+</body>
+</html>
