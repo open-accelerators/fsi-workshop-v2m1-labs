@@ -53,4 +53,7 @@
             </plugins>
         </pluginManagement>
     </build>
+	<profiles>
+		<!-- TODO: Add OpenShift profile here -->
+	</profiles>
 </project>
