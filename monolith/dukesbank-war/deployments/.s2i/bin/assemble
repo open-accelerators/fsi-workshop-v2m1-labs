@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Add a sample user for dukesbank
+echo '200=91ac3e0de1374066957cd48f9428ebc1' >> /opt/eap/standalone/configuration/application-users.properties
+echo '200=bankCustomer' >> /opt/eap/standalone/configuration/application-roles.properties
+
+exec /usr/local/s2i/assemble
