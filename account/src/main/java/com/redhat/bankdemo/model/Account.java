@@ -69,7 +69,7 @@ public class Account implements Serializable {
     return beginBalance;
   }
 
-  public  getBeginBalanceTimeStamp() {
+  public Date getBeginBalanceTimeStamp() {
     return beginBalanceTimeStamp;
   }
 
