@@ -5,8 +5,6 @@
  * compliance with  the terms of the License at:
  * http://developer.sun.com/berkeley_license.html
  */
-
-
 package com.sun.tutorial.javaee.dukesbank.web.template;
 
 public final class Debug {
