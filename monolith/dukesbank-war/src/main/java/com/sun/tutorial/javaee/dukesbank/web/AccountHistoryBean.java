@@ -66,7 +66,7 @@ public class AccountHistoryBean {
         beginDay = 1;
         endMonth = 12;
         endDay = 31;
-        year = 2006;
+        year = 2003;
     }
 
     public void doTx() {
@@ -350,7 +350,7 @@ public class AccountHistoryBean {
     }
 
     public ArrayList<SelectItem> getYearOptions() throws Exception {
-        return loadOptions(2004, 2006, null);
+        return loadOptions(2003, 2005, null);
     }
 
     public void setBeginMonth(Integer beginMonth) {
