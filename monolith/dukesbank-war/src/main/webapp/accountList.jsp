@@ -31,6 +31,7 @@
 <jsp:include page="/template/template.jsp"/>
 <center>
 
+<!-- TODO: Replace content within <center></center> with the Account microservices view -->
   <h:dataTable        id="accounts"
             captionClass="list-caption"
            columnClasses="list-column-left, list-column-center,
